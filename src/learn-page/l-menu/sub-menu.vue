@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <keep-alive>
-      <router-view />
-    </keep-alive>
+  <div class="sub-menu">
+    <slot></slot>
   </div>
 </template>
 <script>
 export default {
-  name: 'App'
+  name: 'SubMenu'
 }
 </script>
 <style lang="scss" scoped>
-
+.sub-menu{
+  background: pink;;
+}
 </style>

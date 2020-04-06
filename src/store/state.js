@@ -1,5 +1,5 @@
 const state = {
-  appName: 'admin'
+  spining: false
 }
 
 export default state

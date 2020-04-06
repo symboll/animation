@@ -1,6 +1,6 @@
 const mutations = {
-  SET_APP_NAME: (state, params) => {
-    state.appName = params.appName
+  SET_SPINING: (state, params) => {
+    state.spining = params.spining
   }
 }
 
