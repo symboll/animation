@@ -18,6 +18,11 @@ export default [
         component: () => import(/* webpackChunkName: "about" */'@/learn-page/Home.vue')
       },
       {
+        path: 'form',
+        name: 'form',
+        component: () => import(/* webpackChunkName: "about" */'@/views/form-page.vue')
+      },
+      {
         path: 'user',
         name: 'user',
         component: () => import(/* webpackChunkName: "user" */'@/views/user.vue')

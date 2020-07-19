@@ -27,8 +27,8 @@
         <v-list-item-action v-if="item.icon">
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-action>
-        <v-list-item-content>
-          <v-list-item-title>
+        <v-list-item-content @click="handleClick(item.text)">
+          <v-list-item-title >
             {{ item.text }}
           </v-list-item-title>
         </v-list-item-content>
@@ -43,6 +43,15 @@ export default {
     items: {
       type: Array,
       default: () => []
+    }
+  },
+  methods: {
+    handleClick (text) {
+      const route = this.$route
+      if (text === route.name) { return }
+      this.$router.push({
+        name: `${text}`
+      })
     }
   }
 }

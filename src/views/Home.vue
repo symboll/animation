@@ -55,17 +55,9 @@
     </v-app-bar>
     <v-content>
       <v-container
-        class="fill-height"
+        class="fill-height custom_style_container"
         fluid
       >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          {{ name }}
-          {{ userId }}
-        </v-row>
-
         <v-row>
           <router-view/>
         </v-row>
@@ -114,6 +106,8 @@ export default {
     searchVal: '',
     drawer: null,
     items: [
+      { icon: 'mdi-', text: 'home' },
+      { icon: 'mdi-', text: 'form' },
       { icon: 'mdi-contacts', text: 'Contacts' },
       { icon: 'mdi-history', text: 'Frequently contacted' },
       { icon: 'mdi-content-copy', text: 'Duplicates' },
@@ -132,14 +126,14 @@ export default {
         text: 'More',
         model: false,
         children: [
-          { text: 'Import' },
+          { icon: 'mdi-plus', text: 'Import' },
           { text: 'Export' },
           { text: 'Print' },
           { text: 'Undo changes' },
           { text: 'Other contacts' }
         ]
       },
-      { icon: 'mdi-settings', text: 'Settings' },
+      // { icon: 'mdi-setting', text: 'Settings' },
       { icon: 'mdi-message', text: 'Send feedback' },
       { icon: 'mdi-help-circle', text: 'Help' },
       { icon: 'mdi-cellphone-link', text: 'App downloads' },
@@ -171,3 +165,14 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.custom_style_container{
+  align-items: flex-start;
+  .row {
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 100%;
+    box-shadow: 0px 0px 12px 2px #eee;
+  }
+}
+</style>

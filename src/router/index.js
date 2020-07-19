@@ -13,21 +13,21 @@ const router = new Router({
 // 全局守卫
 
 router.beforeEach((to, from, next) => {
-  console.log(111111)
-  setTitle((to.meta || {}).title)
-  const token = getToken()
-  if (token) {
-    store.dispatch('authorization').then(() => {
-      if (to.name === 'login') next({ name: 'home' })
-      else next()
-    }).catch(() => {
-      setToken('')
-      next({ name: 'login' })
-    })
-  } else {
-    if (to.name === 'login') next()
-    else next({ name: 'login' })
-  }
+  // setTitle((to.meta || {}).title)
+  // const token = getToken()
+  // if (token) {
+  //   store.dispatch('authorization').then(() => {
+  //     if (to.name === 'login') next({ name: 'home' })
+  //     else next()
+  //   }).catch(() => {
+  //     setToken('')
+  //     next({ name: 'login' })
+  //   })
+  // } else {
+  //   if (to.name === 'login') next()
+  //   else next({ name: 'login' })
+  // }
+  next()
 })
 
 router.afterEach((to, from) => {})
