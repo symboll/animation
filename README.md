@@ -1,4 +1,4 @@
-# wood
+# material
 
 ## Project setup
 ```

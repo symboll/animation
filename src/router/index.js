@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './routes'
-import { setTitle, getToken, setToken } from '@/lib/util'
-import store from '@/store'
+// import { setTitle, getToken, setToken } from '@/lib/util'
+// import store from '@/store'
 Vue.use(Router)
 
 const router = new Router({
@@ -30,8 +30,8 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-router.afterEach((to, from) => {})
-router.beforeResolve((to, from, next) => { next() })
+// router.afterEach((to, from) => {})
+// router.beforeResolve((to, from, next) => { next() })
 
 // 独享守卫 在routes.js 中配置
 // 组件内守卫 在Home.vue 中演示

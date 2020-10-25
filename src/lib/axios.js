@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { baseURL } from '../config'
 import { getToken } from '@/lib/util'
-import store from '@/store'
+// import store from '@/store'
 class HttpRequest {
   constructor (baseUrl = baseURL) {
     this.baseUrl = baseUrl
@@ -20,9 +20,9 @@ class HttpRequest {
   interceptors (instance, url) {
     instance.interceptors.request.use(config => {
       if (!Object.keys(this.queue).length) {
-        store.commit('SET_SPINING', {
-          spining: true
-        })
+        // store.commit('SET_SPINING', {
+        //   spining: true
+        // })
       }
       this.queue[url] = true
       config.headers['token'] = getToken()
@@ -32,16 +32,16 @@ class HttpRequest {
     })
     instance.interceptors.response.use(res => {
       Reflect.deleteProperty(this.queue, url)
-      store.commit('SET_SPINING', {
-        spining: false
-      })
+      // store.commit('SET_SPINING', {
+      //   spining: false
+      // })
       const { data } = res
       return data
     }, error => {
       Reflect.deleteProperty(this.queue, url)
-      store.commit('SET_SPINING', {
-        spining: false
-      })
+      // store.commit('SET_SPINING', {
+      //   spining: false
+      // })
       return Promise.reject(error)
     })
   }

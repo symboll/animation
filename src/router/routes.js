@@ -15,7 +15,7 @@ export default [
       {
         path: 'home',
         name: 'home',
-        component: () => import(/* webpackChunkName: "about" */'@/learn-page/Home.vue')
+        component: () => import(/* webpackChunkName: "about" */'@/learn-page/upload.vue')
       },
       {
         path: 'form',
