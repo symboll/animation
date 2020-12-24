@@ -3,7 +3,7 @@ import classnames from "classnames"
 import { PREFIXCLASS, noop } from '../../util/constant'
 import { tuple  } from '../../util/type'
 
-const ButtonTypes = tuple('primary', 'success', 'info', 'warning', 'danger', 'link')
+const ButtonTypes = tuple('default','primary', 'success', 'info', 'warning', 'danger', 'link')
 type ButtonType = typeof ButtonTypes[number]
 
 const ButtonSizes = tuple('medium', 'small', 'mini')
@@ -29,12 +29,12 @@ const Button: React.FC<BaseButtonProps> = (props) => {
     [`${PREFIXCLASS}-btn--${size}`]: size,
     [`${PREFIXCLASS}-btn--round`]: round,
     [`${PREFIXCLASS}-btn--circle`]: circle,
-    disabled: type === 'link' && disabled,
+    [`${PREFIXCLASS}-btn--disabled`]: disabled,
   })
 
-  if (type === 'link' && href) {
+  if (href) {
     return (
-      <a className={classes} href={href} >
+      <a className={classes} href={href} onClick={onClick}>
         {children}
       </a>
     )
@@ -48,7 +48,8 @@ const Button: React.FC<BaseButtonProps> = (props) => {
 
 
 Button.defaultProps = {
-  onClick: noop
+  onClick: noop,
+  type: 'default'
 }
 
 export default Button
