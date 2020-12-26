@@ -1,6 +1,6 @@
-import React from "react"
+import React, { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react"
 import classnames from "classnames"
-import { PREFIXCLASS, noop } from '../../util/constant'
+import { PREFIXCLASS } from '../../util/constant'
 import { tuple  } from '../../util/type'
 
 const ButtonTypes = tuple('default','primary', 'success', 'info', 'warning', 'danger', 'link')
@@ -11,20 +11,26 @@ type ButtonSize = typeof ButtonSizes[number]
 
 
 interface BaseButtonProps {
-  className?: string
-  disabled?: boolean
-  size?: ButtonSize
-  type?: ButtonType
+  size?: ButtonSize,
+  type?: ButtonType,
+  className?: string,
+  disabled?: boolean,
   href?: string,
-  onClick?: ()=> void,
   round?: boolean,
-  circle?: boolean
+  circle?: boolean,
+  children: React.ReactNode,
+  // onClick?: React.MouseEventHandler<HTMLElement>
 }
-const Button: React.FC<BaseButtonProps> = (props) => {
-  const { type, disabled, size, children, href, round, circle } = props
-  const { onClick } = props
 
-  const classes = classnames(`${PREFIXCLASS}-btn`, {
+type NativeButtonProps = BaseButtonProps & Omit<ButtonHTMLAttributes<any>, 'type' >
+type AnchorButtonProps = BaseButtonProps & Omit<AnchorHTMLAttributes<any>, 'type' >
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
+
+
+const Button: React.FC<ButtonProps> = (props) => {
+  const { size, type, className, disabled, href, round, circle, children, onClick, ...restProps } = props
+
+  const classes = classnames(`${PREFIXCLASS}-btn`, `${className}`,{
     [`${PREFIXCLASS}-btn--${type}`]: type,
     [`${PREFIXCLASS}-btn--${size}`]: size,
     [`${PREFIXCLASS}-btn--round`]: round,
@@ -34,13 +40,13 @@ const Button: React.FC<BaseButtonProps> = (props) => {
 
   if (href) {
     return (
-      <a className={classes} href={href} onClick={onClick}>
+      <a className={classes} href={href} {...restProps}>
         {children}
       </a>
     )
   }
   return (
-    <button className={classes} disabled={disabled} onClick={onClick}>
+    <button className={classes} disabled={disabled} {...restProps}>
       {children}
     </button>
   )
@@ -48,8 +54,8 @@ const Button: React.FC<BaseButtonProps> = (props) => {
 
 
 Button.defaultProps = {
-  onClick: noop,
-  type: 'default'
+  type: 'default',
+  disabled: false
 }
 
 export default Button
